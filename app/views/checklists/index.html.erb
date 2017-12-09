@@ -1,0 +1,28 @@
+<h1>Click on event title to add / check your checlist for the event</h1>
+
+<%@ev.each do |x| %>
+<!--<a href="/checklists/<@%=x.id%>"><@%=x.title%> at <@%=x.date.to_formatted_s(:long_ordinal)%></a><Br>-->
+<%=link_to "#{x.title} at #{x.date.to_formatted_s(:long_ordinal)}", "/checklists/#{x.id}"%><Br>
+<%end%>
+
+<hr>
+<h1>Add an event</h1>
+
+<!--<form action="/c" method="post">-->
+<!--    Event Title: <input type="text" name="input_title"><Br>-->
+<!--    Event Date: <input type="date" name="input_date">-->
+<!--    <input type="submit" value="ADD EVENT">-->
+
+<%#=form_tag '/checklists', method:'post' do%>
+    <%#=label_tag(:input_title, "Event Title:") %>
+    <%#=text_field_tag (:input_title) %><Br>
+    <%#=label_tag(:input_date, "Event Date:") %>
+    <%#=date_field_tag (:input_date) %>
+    <%#=submit_tag ("ADD EVENT") %>
+    <%#end%>
+    
+<%=form_for @p do |d|%>
+    Event: <%=d.text_field :title%><Br>
+    Date: <%=d.date_field :date%>
+    <%=d.submit %>
+<%end%>

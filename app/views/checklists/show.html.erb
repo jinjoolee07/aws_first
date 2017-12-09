@@ -1,0 +1,29 @@
+<h1>Title: <%=@e.title%></h1>
+
+<!--<a href="/checklists/new">Back</a><Br>-->
+<%=link_to "Back", "/checklists" %><Br>
+
+<!--<a href="/delete/<@%=@e.id%>">Delete</a>-->
+<%=link_to "Delete","/checklists/#{@e.id}", method:"delete" %>
+
+<hr>
+<h1> Checklist </h1>
+
+<% @c.each do |x|%>
+<p><%=x.answer%><%=link_to "[done]", "/todos/#{x.id}",method:"delete"%></p>
+<%end%>
+<!--<a href="/<@%=x.id%>"><@%=x.answer%></a><br>-->
+<!--<@%end%>-->
+<hr>
+
+<h1>Add the Checklist</h1>
+<!--<form action="/b/<@%=@e.id%>" method="post">-->
+<!--    What to do? => <input type="text" name="answer">-->
+<!--    <input type="submit" value="Add to list">-->
+<!--</form>-->
+
+<%=form_tag "/todos/#{@e.id}", method:'post' do%>
+    <%=label_tag(:answer, "What to do? => ") %>
+    <%=text_field_tag(:answer) %>
+    <%=submit_tag("Add to list") %>
+    <%end%>
